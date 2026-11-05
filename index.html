@@ -1,0 +1,1498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>TESLAVOLT | Electric Mobility & Energy</title>
+
+  <meta
+    name="description"
+    content="TeslaVolt — a premium Tesla-focused electric mobility and energy platform."
+  />
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #050505;
+      color: #ffffff;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    ::selection {
+      background: #e82127;
+      color: #ffffff;
+    }
+
+    .glass {
+      background: rgba(10, 10, 10, 0.72);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+    .hero-bg {
+      background:
+        linear-gradient(
+          90deg,
+          rgba(0, 0, 0, 0.94) 0%,
+          rgba(0, 0, 0, 0.62) 45%,
+          rgba(0, 0, 0, 0.18) 100%
+        ),
+        linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0.15),
+          rgba(0, 0, 0, 0.85)
+        ),
+        url("https://res.cloudinary.com/z2a26yyx/image/upload/f_auto,q_auto/a_sleek_modern_dark_themed_website_homepage_dash");
+      background-size: cover;
+      background-position: center;
+    }
+
+    .red-line {
+      width: 55px;
+      height: 3px;
+      background: #e82127;
+    }
+
+    .vehicle-card {
+      transition:
+        transform 0.35s ease,
+        border-color 0.35s ease,
+        box-shadow 0.35s ease;
+    }
+
+    .vehicle-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(232, 33, 39, 0.75);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    }
+
+    .vehicle-image {
+      transition: transform 0.6s ease;
+    }
+
+    .vehicle-card:hover .vehicle-image {
+      transform: scale(1.045);
+    }
+
+    .energy-card {
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .energy-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(232, 33, 39, 0.7);
+    }
+
+    .modal {
+      display: none;
+    }
+
+    .modal.active {
+      display: flex;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .mobile-menu.active {
+      display: block;
+    }
+
+    .nav-link {
+      position: relative;
+    }
+
+    .nav-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -7px;
+      width: 0;
+      height: 2px;
+      background: #e82127;
+      transition: width 0.25s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .account-panel {
+      display: none;
+    }
+
+    .account-panel.active {
+      display: block;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.7s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-bg {
+        background-position: 65% center;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ========================================================= -->
+  <!-- NAVIGATION -->
+  <!-- ========================================================= -->
+
+  <header class="fixed top-0 left-0 right-0 z-50 glass border-b border-white/10">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8">
+      <div class="h-20 flex items-center justify-between">
+
+        <!-- BRAND -->
+        <a href="#home" class="flex items-center gap-3">
+          <div
+            class="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center font-bold text-lg"
+          >
+            T
+          </div>
+
+          <span class="font-bold tracking-[0.28em] text-lg">
+            TESLAVOLT
+          </span>
+        </a>
+
+        <!-- DESKTOP NAV -->
+        <nav class="hidden lg:flex items-center gap-8 text-sm font-medium">
+
+          <a href="#home" class="nav-link">HOME</a>
+          <a href="#vehicles" class="nav-link">VEHICLES</a>
+          <a href="#energy" class="nav-link">ENERGY</a>
+          <a href="#technology" class="nav-link">TECHNOLOGY</a>
+          <a href="#about" class="nav-link">ABOUT</a>
+          <a href="#support" class="nav-link">SUPPORT</a>
+
+        </nav>
+
+        <!-- ACTIONS -->
+        <div class="hidden lg:flex items-center gap-3">
+
+          <button
+            onclick="openAccount()"
+            class="p-3 rounded-full hover:bg-white/10 transition"
+            aria-label="Account"
+          >
+            <i data-lucide="user" class="w-5 h-5"></i>
+          </button>
+
+          <button
+            onclick="openSupport('General TeslaVolt customer support')"
+            class="bg-white text-black px-5 py-2.5 rounded-full font-semibold text-sm hover:bg-gray-200 transition"
+          >
+            SUPPORT
+          </button>
+
+        </div>
+
+        <!-- MOBILE MENU BUTTON -->
+        <button
+          onclick="toggleMobileMenu()"
+          class="lg:hidden p-2"
+          aria-label="Open menu"
+        >
+          <i data-lucide="menu" class="w-7 h-7"></i>
+        </button>
+
+      </div>
+
+      <!-- MOBILE MENU -->
+      <div id="mobileMenu" class="mobile-menu pb-5 lg:hidden">
+
+        <div class="flex flex-col gap-1">
+
+          <a href="#home" onclick="closeMobileMenu()" class="p-4 rounded-lg hover:bg-white/10">
+            HOME
+          </a>
+
+          <a href="#vehicles" onclick="closeMobileMenu()" class="p-4 rounded-lg hover:bg-white/10">
+            VEHICLES
+          </a>
+
+          <a href="#energy" onclick="closeMobileMenu()" class="p-4 rounded-lg hover:bg-white/10">
+            ENERGY
+          </a>
+
+          <a href="#technology" onclick="closeMobileMenu()" class="p-4 rounded-lg hover:bg-white/10">
+            TECHNOLOGY
+          </a>
+
+          <a href="#about" onclick="closeMobileMenu()" class="p-4 rounded-lg hover:bg-white/10">
+            ABOUT
+          </a>
+
+          <a href="#support" onclick="closeMobileMenu()" class="p-4 rounded-lg hover:bg-white/10">
+            SUPPORT
+          </a>
+
+          <button
+            onclick="openAccount(); closeMobileMenu();"
+            class="text-left p-4 rounded-lg hover:bg-white/10"
+          >
+            ACCOUNT
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </header>
+
+
+  <!-- ========================================================= -->
+  <!-- HERO -->
+  <!-- ========================================================= -->
+
+  <main>
+
+    <section
+      id="home"
+      class="hero-bg min-h-screen flex items-center pt-20"
+    >
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8 w-full">
+
+        <div class="max-w-3xl">
+
+          <div class="red-line mb-7"></div>
+
+          <p class="uppercase tracking-[0.35em] text-sm text-gray-300 mb-5">
+            Electric Mobility • Energy • Technology
+          </p>
+
+          <h1
+            class="text-5xl sm:text-6xl lg:text-8xl font-bold leading-[0.95] tracking-tight"
+          >
+            THE FUTURE
+            <br />
+            IS ELECTRIC.
+          </h1>
+
+          <p class="mt-8 text-lg sm:text-xl text-gray-300 max-w-2xl leading-relaxed">
+            Explore a premium Tesla-focused experience for electric vehicles,
+            energy products and next-generation technology.
+          </p>
+
+          <div class="flex flex-wrap gap-4 mt-10">
+
+            <a
+              href="#vehicles"
+              class="bg-white text-black px-7 py-4 rounded-full font-bold hover:bg-gray-200 transition"
+            >
+              EXPLORE VEHICLES
+            </a>
+
+            <a
+              href="#energy"
+              class="border border-white/40 px-7 py-4 rounded-full font-bold hover:bg-white/10 transition"
+            >
+              EXPLORE ENERGY
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- INTRO -->
+    <!-- ========================================================= -->
+
+    <section class="py-24 border-b border-white/10">
+
+      <div class="max-w-5xl mx-auto px-5 text-center">
+
+        <p class="text-red-500 uppercase tracking-[0.3em] text-sm mb-5">
+          TESLAVOLT
+        </p>
+
+        <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold">
+          Electric mobility,
+          <br />
+          reimagined.
+        </h2>
+
+        <p class="mt-7 text-gray-400 text-lg leading-relaxed">
+          TeslaVolt brings vehicles, energy and technology together in one
+          premium digital experience. Explore each vehicle, discover its
+          capabilities and contact our support team directly about your
+          preferred model or energy product.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- VEHICLES -->
+    <!-- ========================================================= -->
+
+    <section id="vehicles" class="py-24">
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="mb-14">
+
+          <p class="text-red-500 uppercase tracking-[0.3em] text-sm mb-4">
+            VEHICLES
+          </p>
+
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold">
+            Choose your Tesla.
+          </h2>
+
+          <p class="text-gray-400 mt-5 max-w-2xl text-lg">
+            Explore the Tesla models featured on TeslaVolt. Select a model to
+            view its details and start an investment inquiry.
+          </p>
+
+        </div>
+
+
+        <div
+          id="vehicleGrid"
+          class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"
+        ></div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- ENERGY -->
+    <!-- ========================================================= -->
+
+    <section id="energy" class="py-24 bg-[#090909] border-y border-white/10">
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="mb-14">
+
+          <p class="text-red-500 uppercase tracking-[0.3em] text-sm mb-4">
+            TESLA ENERGY
+          </p>
+
+          <h2 class="text-4xl sm:text-5xl lg:text-6xl font-bold">
+            Power your future.
+          </h2>
+
+          <p class="text-gray-400 mt-5 max-w-2xl text-lg">
+            Explore energy products designed to help homes and businesses
+            generate, store and use electricity more intelligently.
+          </p>
+
+        </div>
+
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+
+          <!-- SOLAR -->
+          <div class="energy-card border border-white/10 rounded-2xl overflow-hidden bg-black">
+
+            <div class="h-56 overflow-hidden bg-gray-900">
+              <img
+                src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1200&q=85"
+                alt="Solar panels"
+                class="w-full h-full object-cover"
+              />
+            </div>
+
+            <div class="p-6">
+
+              <h3 class="text-2xl font-bold">
+                Solar Panels
+              </h3>
+
+              <p class="text-gray-400 mt-3 text-sm leading-relaxed">
+                Generate clean energy for your home and reduce dependence on
+                traditional electricity sources.
+              </p>
+
+              <button
+                onclick="openSupport('I am interested in ordering Tesla Solar Panels.')"
+                class="mt-6 w-full bg-white text-black py-3 rounded-full font-bold hover:bg-gray-200 transition"
+              >
+                ORDER
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- POWERWALL -->
+          <div class="energy-card border border-white/10 rounded-2xl overflow-hidden bg-black">
+
+            <div class="h-56 overflow-hidden bg-gray-900">
+              <img
+                src="https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=1200&q=85"
+                alt="Home energy storage"
+                class="w-full h-full object-cover"
+              />
+            </div>
+
+            <div class="p-6">
+
+              <h3 class="text-2xl font-bold">
+                Powerwall
+              </h3>
+
+              <p class="text-gray-400 mt-3 text-sm leading-relaxed">
+                Store energy and help keep your home powered when the grid
+                goes down.
+              </p>
+
+              <button
+                onclick="openSupport('I am interested in purchasing a Tesla Powerwall.')"
+                class="mt-6 w-full bg-white text-black py-3 rounded-full font-bold hover:bg-gray-200 transition"
+              >
+                ORDER
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- SOLAR ROOF -->
+          <div class="energy-card border border-white/10 rounded-2xl overflow-hidden bg-black">
+
+            <div class="h-56 overflow-hidden bg-gray-900">
+              <img
+                src="https://images.unsplash.com/photo-1592833159155-c62df1b65634?auto=format&fit=crop&w=1200&q=85"
+                alt="Solar roof"
+                class="w-full h-full object-cover"
+              />
+            </div>
+
+            <div class="p-6">
+
+              <h3 class="text-2xl font-bold">
+                Solar Roof
+              </h3>
+
+              <p class="text-gray-400 mt-3 text-sm leading-relaxed">
+                A roof designed to generate energy while maintaining a clean,
+                modern architectural appearance.
+              </p>
+
+              <button
+                onclick="openSupport('I am interested in ordering a Tesla Solar Roof.')"
+                class="mt-6 w-full bg-white text-black py-3 rounded-full font-bold hover:bg-gray-200 transition"
+              >
+                ORDER
+              </button>
+
+            </div>
+
+          </div>
+
+
+          <!-- CHARGING -->
+          <div class="energy-card border border-white/10 rounded-2xl overflow-hidden bg-black">
+
+            <div class="h-56 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
+
+              <i
+                data-lucide="zap"
+                class="w-20 h-20 text-red-500"
+              ></i>
+
+            </div>
+
+            <div class="p-6">
+
+              <h3 class="text-2xl font-bold">
+                Charging
+              </h3>
+
+              <p class="text-gray-400 mt-3 text-sm leading-relaxed">
+                Explore charging solutions designed for convenient everyday
+                electric vehicle ownership.
+              </p>
+
+              <button
+                onclick="openSupport('I am interested in Tesla charging products.')"
+                class="mt-6 w-full bg-white text-black py-3 rounded-full font-bold hover:bg-gray-200 transition"
+              >
+                INQUIRE
+              </button>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- TECHNOLOGY -->
+    <!-- ========================================================= -->
+
+    <section id="technology" class="py-24">
+
+      <div class="max-w-7xl mx-auto px-5 lg:px-8">
+
+        <div class="grid lg:grid-cols-2 gap-16 items-center">
+
+          <div>
+
+            <p class="text-red-500 uppercase tracking-[0.3em] text-sm mb-4">
+              TECHNOLOGY
+            </p>
+
+            <h2 class="text-4xl sm:text-5xl font-bold">
+              Built around
+              <br />
+              intelligent technology.
+            </h2>
+
+            <p class="text-gray-400 mt-6 text-lg leading-relaxed">
+              TeslaVolt presents the technology behind modern electric
+              mobility — from electric powertrains and advanced safety systems
+              to charging and energy storage.
+            </p>
+
+            <button
+              onclick="openSupport('I would like more information about Tesla technology.')"
+              class="mt-8 border border-white/30 px-7 py-3 rounded-full font-bold hover:bg-white hover:text-black transition"
+            >
+              LEARN MORE
+            </button>
+
+          </div>
+
+
+          <div class="grid grid-cols-2 gap-4">
+
+            <div class="p-7 bg-[#0c0c0c] border border-white/10 rounded-2xl">
+              <i data-lucide="battery-charging" class="w-8 h-8 text-red-500"></i>
+              <h3 class="font-bold text-xl mt-5">Electric Power</h3>
+              <p class="text-gray-500 text-sm mt-2">
+                Efficient electric propulsion.
+              </p>
+            </div>
+
+            <div class="p-7 bg-[#0c0c0c] border border-white/10 rounded-2xl">
+              <i data-lucide="shield-check" class="w-8 h-8 text-red-500"></i>
+              <h3 class="font-bold text-xl mt-5">Safety</h3>
+              <p class="text-gray-500 text-sm mt-2">
+                Technology designed around safety.
+              </p>
+            </div>
+
+            <div class="p-7 bg-[#0c0c0c] border border-white/10 rounded-2xl">
+              <i data-lucide="navigation" class="w-8 h-8 text-red-500"></i>
+              <h3 class="font-bold text-xl mt-5">Connected</h3>
+              <p class="text-gray-500 text-sm mt-2">
+                Software-driven experiences.
+              </p>
+            </div>
+
+            <div class="p-7 bg-[#0c0c0c] border border-white/10 rounded-2xl">
+              <i data-lucide="sun" class="w-8 h-8 text-red-500"></i>
+              <h3 class="font-bold text-xl mt-5">Energy</h3>
+              <p class="text-gray-500 text-sm mt-2">
+                Solar and energy storage.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- ABOUT -->
+    <!-- ========================================================= -->
+
+    <section id="about" class="py-24 bg-[#090909] border-y border-white/10">
+
+      <div class="max-w-5xl mx-auto px-5 text-center">
+
+        <p class="text-red-500 uppercase tracking-[0.3em] text-sm mb-4">
+          ABOUT TESLAVOLT
+        </p>
+
+        <h2 class="text-4xl sm:text-5xl font-bold">
+          More than a vehicle.
+          <br />
+          A complete electric future.
+        </h2>
+
+        <p class="text-gray-400 mt-7 text-lg leading-relaxed">
+          TeslaVolt is designed as a premium digital destination for exploring
+          electric vehicles, energy solutions and technology. Customers can
+          explore individual models and products and connect directly with
+          customer support for inquiries.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ========================================================= -->
+    <!-- SUPPORT -->
+    <!-- ========================================================= -->
+
+    <section id="support" class="py-24">
+
+      <div class="max-w-4xl mx-auto px-5 text-center">
+
+        <p class="text-red-500 uppercase tracking-[0.3em] text-sm mb-4">
+          CUSTOMER SUPPORT
+        </p>
+
+        <h2 class="text-4xl sm:text-5xl font-bold">
+          Need assistance?
+        </h2>
+
+        <p class="text-gray-400 mt-5 text-lg">
+          Contact TeslaVolt support for vehicle, energy product and general
+          customer inquiries.
+        </p>
+
+        <button
+          onclick="openSupport('Hello TeslaVolt Support, I would like assistance.')"
+          class="mt-8 bg-white text-black px-8 py-4 rounded-full font-bold hover:bg-gray-200 transition"
+        >
+          CHAT WITH SUPPORT
+        </button>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ========================================================= -->
+  <!-- FOOTER -->
+  <!-- ========================================================= -->
+
+  <footer class="border-t border-white/10 bg-black">
+
+    <div class="max-w-7xl mx-auto px-5 lg:px-8 py-14">
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
+
+        <div>
+
+          <div class="flex items-center gap-3">
+            <div
+              class="w-9 h-9 rounded-full border border-white/30 flex items-center justify-center font-bold"
+            >
+              T
+            </div>
+
+            <span class="font-bold tracking-[0.25em]">
+              TESLAVOLT
+            </span>
+          </div>
+
+          <p class="text-gray-500 text-sm mt-5 leading-relaxed">
+            Electric mobility, energy and technology.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h4 class="font-bold mb-4">
+            VEHICLES
+          </h4>
+
+          <div class="flex flex-col gap-3 text-sm text-gray-500">
+
+            <a href="#vehicles" class="hover:text-white">Model S</a>
+            <a href="#vehicles" class="hover:text-white">Model 3</a>
+            <a href="#vehicles" class="hover:text-white">Model X</a>
+            <a href="#vehicles" class="hover:text-white">Model Y</a>
+            <a href="#vehicles" class="hover:text-white">Cybertruck</a>
+            <a href="#vehicles" class="hover:text-white">Roadster</a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h4 class="font-bold mb-4">
+            ENERGY
+          </h4>
+
+          <div class="flex flex-col gap-3 text-sm text-gray-500">
+
+            <a href="#energy" class="hover:text-white">Solar Panels</a>
+            <a href="#energy" class="hover:text-white">Solar Roof</a>
+            <a href="#energy" class="hover:text-white">Powerwall</a>
+            <a href="#energy" class="hover:text-white">Charging</a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h4 class="font-bold mb-4">
+            SUPPORT
+          </h4>
+
+          <div class="flex flex-col gap-3 text-sm text-gray-500">
+
+            <button
+              onclick="openAccount()"
+              class="text-left hover:text-white"
+            >
+              Account
+            </button>
+
+            <button
+              onclick="openSupport('Hello TeslaVolt Support.')"
+              class="text-left hover:text-white"
+            >
+              Customer Support
+            </button>
+
+            <a href="#technology" class="hover:text-white">
+              Technology
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div
+        class="mt-14 pt-7 border-t border-white/10 flex flex-col sm:flex-row justify-between gap-4 text-xs text-gray-600"
+      >
+
+        <p>
+          © 2026 TeslaVolt. All rights reserved.
+        </p>
+
+        <p>
+          TeslaVolt is an independent platform and is not affiliated with or
+          endorsed by Tesla, Inc.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+  <!-- ========================================================= -->
+  <!-- VEHICLE DETAILS MODAL -->
+  <!-- ========================================================= -->
+
+  <div
+    id="vehicleModal"
+    class="modal fixed inset-0 z-[100] items-center justify-center bg-black/90 p-4"
+  >
+
+    <div
+      class="bg-[#0c0c0c] border border-white/10 rounded-3xl max-w-5xl w-full max-h-[90vh] overflow-y-auto"
+    >
+
+      <div class="sticky top-0 z-10 flex justify-end p-4 bg-[#0c0c0c]/90 backdrop-blur">
+
+        <button
+          onclick="closeVehicleModal()"
+          class="p-3 rounded-full bg-white/10 hover:bg-white/20"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+
+      </div>
+
+      <div id="vehicleModalContent" class="px-6 pb-10"></div>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- ACCOUNT MODAL -->
+  <!-- ========================================================= -->
+
+  <div
+    id="accountModal"
+    class="modal fixed inset-0 z-[110] items-center justify-center bg-black/90 p-4"
+  >
+
+    <div class="bg-[#0c0c0c] border border-white/10 rounded-3xl w-full max-w-md p-7">
+
+      <div class="flex justify-between items-center">
+
+        <div>
+          <p class="text-red-500 text-xs uppercase tracking-[0.25em]">
+            TESLAVOLT
+          </p>
+
+          <h2 class="text-3xl font-bold mt-2">
+            Your account
+          </h2>
+        </div>
+
+        <button
+          onclick="closeAccount()"
+          class="p-2 rounded-full hover:bg-white/10"
+        >
+          <i data-lucide="x"></i>
+        </button>
+
+      </div>
+
+
+      <div class="mt-7 flex gap-2">
+
+        <button
+          id="loginTab"
+          onclick="showLogin()"
+          class="flex-1 bg-white text-black py-3 rounded-full font-bold"
+        >
+          LOGIN
+        </button>
+
+        <button
+          id="signupTab"
+          onclick="showSignup()"
+          class="flex-1 border border-white/20 py-3 rounded-full font-bold"
+        >
+          CREATE ACCOUNT
+        </button>
+
+      </div>
+
+
+      <form id="loginForm" class="mt-7 space-y-4">
+
+        <input
+          type="email"
+          placeholder="Email address"
+          class="w-full bg-black border border-white/15 rounded-xl px-4 py-4 outline-none focus:border-red-500"
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Password"
+          class="w-full bg-black border border-white/15 rounded-xl px-4 py-4 outline-none focus:border-red-500"
+          required
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-white text-black py-4 rounded-full font-bold"
+        >
+          LOGIN
+        </button>
+
+      </form>
+
+
+      <form id="signupForm" class="mt-7 space-y-4 hidden">
+
+        <input
+          type="text"
+          placeholder="Full name"
+          class="w-full bg-black border border-white/15 rounded-xl px-4 py-4 outline-none focus:border-red-500"
+          required
+        />
+
+        <input
+          type="email"
+          placeholder="Email address"
+          class="w-full bg-black border border-white/15 rounded-xl px-4 py-4 outline-none focus:border-red-500"
+          required
+        />
+
+        <input
+          type="password"
+          placeholder="Create password"
+          class="w-full bg-black border border-white/15 rounded-xl px-4 py-4 outline-none focus:border-red-500"
+          required
+        />
+
+        <button
+          type="submit"
+          class="w-full bg-white text-black py-4 rounded-full font-bold"
+        >
+          CREATE ACCOUNT
+        </button>
+
+      </form>
+
+
+      <p class="text-xs text-gray-600 mt-6 text-center">
+        Secure account functionality will be connected to the TeslaVolt
+        backend in a later stage.
+      </p>
+
+    </div>
+
+  </div>
+
+
+  <!-- ========================================================= -->
+  <!-- CHAPORT -->
+  <!-- ========================================================= -->
+
+  <script type="text/javascript">
+    (function(w,d,v3){
+      w.chaportConfig = {
+        appId: '6ae63163fd3025974d40d8db'
+      };
+
+      if(w.chaport)return;
+
+      v3 = w.chaport = {};
+      v3._q = [];
+      v3._l = {};
+
+      v3.q = function(){
+        v3._q.push(arguments);
+      };
+
+      v3.on = function(e,fn){
+        v3._l[e] = v3._l[e] || [];
+        v3._l[e].push(fn);
+      };
+
+      var s = d.createElement('script');
+      s.type = 'text/javascript';
+      s.async = true;
+      s.src = 'https://app.chaport.com/javascripts/insert.js';
+
+      var h = d.getElementsByTagName('head')[0];
+      h.appendChild(s, h);
+
+    })(window, document, 'script');
+  </script>
+
+
+  <!-- ========================================================= -->
+  <!-- JAVASCRIPT -->
+  <!-- ========================================================= -->
+
+  <script>
+
+    const vehicles = [
+
+      {
+        name: "Model S",
+        category: "Luxury Electric Sedan",
+        price: "Reference pricing — contact support",
+        description:
+          "A premium electric sedan focused on long-range driving, performance, advanced software and a refined interior.",
+        range: "Long-range electric sedan",
+        acceleration: "High-performance variants available",
+        image:
+          "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90"
+      },
+
+      {
+        name: "Model 3",
+        category: "Electric Sport Sedan",
+        price: "Reference pricing — contact support",
+        description:
+          "A compact electric sedan combining efficiency, technology, performance and everyday practicality.",
+        range: "Long-range configurations available",
+        acceleration: "Performance configuration available",
+        image:
+          "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90"
+      },
+
+      {
+        name: "Model X",
+        category: "Electric SUV",
+        price: "Reference pricing — contact support",
+        description:
+          "A premium electric SUV designed around spacious seating, practical cargo capacity and advanced electric performance.",
+        range: "Long-range electric SUV",
+        acceleration: "Performance-oriented configurations",
+        image:
+          "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90"
+      },
+
+      {
+        name: "Model Y",
+        category: "Electric Midsize SUV",
+        price: "From $39,990*",
+        description:
+          "A versatile electric SUV combining practicality, efficiency, cargo space and Tesla technology.",
+        range: "Up to 321 mi EPA est. depending on configuration",
+        acceleration: "As quick as 3.3 sec 0–60 mph depending on configuration",
+        image:
+          "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90"
+      },
+
+      {
+        name: "Cybertruck",
+        category: "Electric Utility Truck",
+        price: "From $74,990*",
+        description:
+          "Tesla's electric utility truck with a distinctive stainless-steel exterior, substantial towing capability and Powershare functionality.",
+        range: "Up to 325 mi EPA est. depending on configuration",
+        acceleration: "As quick as 2.6 sec 0–60 mph",
+        image:
+          "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90"
+      },
+
+      {
+        name: "Roadster",
+        category: "Electric Sports Car",
+        price: "Reservation / availability subject to Tesla",
+        description:
+          "Tesla's announced next-generation sports car, designed around extreme electric performance and a dramatic roadster profile.",
+        range: "Specifications and availability subject to change",
+        acceleration: "Announced performance specifications subject to change",
+        image:
+          "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90"
+      }
+
+    ];
+
+
+    /* ========================================================= */
+    /* VEHICLE CARDS */
+    /* ========================================================= */
+
+    const vehicleGrid = document.getElementById("vehicleGrid");
+
+    vehicles.forEach((vehicle, index) => {
+
+      const card = document.createElement("article");
+
+      card.className =
+        "vehicle-card bg-[#0b0b0b] border border-white/10 rounded-3xl overflow-hidden";
+
+      card.innerHTML = `
+
+        <div class="h-64 overflow-hidden bg-black">
+
+          <img
+            src="${vehicle.image}"
+            alt="${vehicle.name}"
+            class="vehicle-image w-full h-full object-cover"
+          />
+
+        </div>
+
+        <div class="p-6">
+
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500">
+            ${vehicle.category}
+          </p>
+
+          <h3 class="text-3xl font-bold mt-2">
+            ${vehicle.name}
+          </h3>
+
+          <p class="text-red-500 font-semibold mt-3">
+            ${vehicle.price}
+          </p>
+
+          <p class="text-gray-400 mt-4 leading-relaxed text-sm">
+            ${vehicle.description}
+          </p>
+
+          <div class="flex gap-3 mt-7">
+
+            <button
+              onclick="openVehicle(${index})"
+              class="flex-1 border border-white/20 py-3 rounded-full font-bold hover:bg-white hover:text-black transition"
+            >
+              VIEW MODEL
+            </button>
+
+            <button
+              onclick="investIn('${vehicle.name}')"
+              class="flex-1 bg-white text-black py-3 rounded-full font-bold hover:bg-gray-200 transition"
+            >
+              INVEST
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+      vehicleGrid.appendChild(card);
+
+    });
+
+
+    /* ========================================================= */
+    /* VEHICLE MODAL */
+    /* ========================================================= */
+
+    function openVehicle(index) {
+
+      const vehicle = vehicles[index];
+
+      const modal = document.getElementById("vehicleModal");
+
+      const content = document.getElementById("vehicleModalContent");
+
+      content.innerHTML = `
+
+        <div class="fade-in">
+
+          <div class="h-[300px] sm:h-[450px] rounded-2xl overflow-hidden bg-black">
+
+            <img
+              src="${vehicle.image}"
+              alt="${vehicle.name}"
+              class="w-full h-full object-cover"
+            />
+
+          </div>
+
+          <div class="mt-8">
+
+            <p class="text-red-500 uppercase tracking-[0.25em] text-sm">
+              ${vehicle.category}
+            </p>
+
+            <h2 class="text-5xl sm:text-6xl font-bold mt-2">
+              ${vehicle.name}
+            </h2>
+
+            <p class="text-red-500 text-xl font-semibold mt-4">
+              ${vehicle.price}
+            </p>
+
+            <p class="text-gray-300 text-lg leading-relaxed mt-7">
+              ${vehicle.description}
+            </p>
+
+          </div>
+
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-8">
+
+            <div class="bg-black border border-white/10 rounded-2xl p-6">
+
+              <p class="text-gray-500 text-sm">
+                RANGE
+              </p>
+
+              <p class="text-xl font-bold mt-2">
+                ${vehicle.range}
+              </p>
+
+            </div>
+
+
+            <div class="bg-black border border-white/10 rounded-2xl p-6">
+
+              <p class="text-gray-500 text-sm">
+                PERFORMANCE
+              </p>
+
+              <p class="text-xl font-bold mt-2">
+                ${vehicle.acceleration}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="mt-10 p-6 bg-[#111] border border-white/10 rounded-2xl">
+
+            <h3 class="text-2xl font-bold">
+              Vehicle information
+            </h3>
+
+            <p class="text-gray-400 mt-3 leading-relaxed">
+              Detailed specifications, multiple exterior views, interior
+              photography, dashboard images, feature information and additional
+              model-specific content will be added to this vehicle page during
+              the next TeslaVolt build stage.
+            </p>
+
+          </div>
+
+
+          <button
+            onclick="investIn('${vehicle.name}')"
+            class="mt-8 w-full bg-red-600 hover:bg-red-700 py-4 rounded-full font-bold text-lg transition"
+          >
+            INVEST IN ${vehicle.name.toUpperCase()}
+          </button>
+
+        </div>
+      `;
+
+      modal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+      lucide.createIcons();
+
+    }
+
+
+    function closeVehicleModal() {
+
+      document.getElementById("vehicleModal").classList.remove("active");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    /* ========================================================= */
+    /* CHAPORT SUPPORT */
+    /* ========================================================= */
+
+    function openSupport(message) {
+
+      /*
+        Chaport's normal widget opens automatically once loaded.
+
+        We save the requested message so that the support integration can
+        use it when the Chaport conversation is opened.
+      */
+
+      localStorage.setItem("teslavoltSupportMessage", message);
+
+      if (window.chaport && typeof window.chaport.q === "function") {
+
+        window.chaport.q(
+          ["open"],
+          {
+            message: message
+          }
+        );
+
+      } else {
+
+        alert(
+          "TeslaVolt Support\n\n" +
+          message +
+          "\n\nPlease use the Chaport chat bubble to send this message."
+        );
+
+      }
+
+    }
+
+
+    function investIn(modelName) {
+
+      const message =
+        "I'm interested in investing in this Tesla " +
+        modelName +
+        ".";
+
+      openSupport(message);
+
+    }
+
+
+    /* ========================================================= */
+    /* ACCOUNT */
+    /* ========================================================= */
+
+    function openAccount() {
+
+      document
+        .getElementById("accountModal")
+        .classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+      lucide.createIcons();
+
+    }
+
+
+    function closeAccount() {
+
+      document
+        .getElementById("accountModal")
+        .classList.remove("active");
+
+      document.body.style.overflow = "";
+
+    }
+
+
+    function showLogin() {
+
+      document
+        .getElementById("loginForm")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("signupForm")
+        .classList.add("hidden");
+
+      document.getElementById("loginTab").className =
+        "flex-1 bg-white text-black py-3 rounded-full font-bold";
+
+      document.getElementById("signupTab").className =
+        "flex-1 border border-white/20 py-3 rounded-full font-bold";
+
+    }
+
+
+    function showSignup() {
+
+      document
+        .getElementById("signupForm")
+        .classList.remove("hidden");
+
+      document
+        .getElementById("loginForm")
+        .classList.add("hidden");
+
+      document.getElementById("signupTab").className =
+        "flex-1 bg-white text-black py-3 rounded-full font-bold";
+
+      document.getElementById("loginTab").className =
+        "flex-1 border border-white/20 py-3 rounded-full font-bold";
+
+    }
+
+
+    /* ========================================================= */
+    /* MOBILE MENU */
+    /* ========================================================= */
+
+    function toggleMobileMenu() {
+
+      document
+        .getElementById("mobileMenu")
+        .classList.toggle("active");
+
+    }
+
+
+    function closeMobileMenu() {
+
+      document
+        .getElementById("mobileMenu")
+        .classList.remove("active");
+
+    }
+
+
+    /* ========================================================= */
+    /* FORM PLACEHOLDERS */
+    /* ========================================================= */
+
+    document.getElementById("loginForm").addEventListener("submit", function(e) {
+
+      e.preventDefault();
+
+      alert(
+        "Account login will be connected to the TeslaVolt authentication system in the next stage."
+      );
+
+    });
+
+
+    document.getElementById("signupForm").addEventListener("submit", function(e) {
+
+      e.preventDefault();
+
+      alert(
+        "Account creation will be connected to the TeslaVolt authentication system in the next stage."
+      );
+
+    });
+
+
+    /* ========================================================= */
+    /* CLOSE MODALS WHEN CLICKING BACKDROP */
+    /* ========================================================= */
+
+    document.getElementById("vehicleModal").addEventListener("click", function(e) {
+
+      if (e.target === this) {
+        closeVehicleModal();
+      }
+
+    });
+
+
+    document.getElementById("accountModal").addEventListener("click", function(e) {
+
+      if (e.target === this) {
+        closeAccount();
+      }
+
+    });
+
+
+    /* ========================================================= */
+    /* INITIALIZE ICONS */
+    /* ========================================================= */
+
+    lucide.createIcons();
+
+  </script>
+
+</body>
+          </html>
