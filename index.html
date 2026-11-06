@@ -1236,217 +1236,125 @@
     /* VEHICLE MODAL */
     /* ========================================================= */
 function openVehicle(index) {
+  const vehicle = vehicles[index];
+  const modal = document.getElementById("vehicleModal");
+  const content = document.getElementById("vehicleModalContent");
 
-      const vehicle = vehicles[index];
+  const gallery = vehicle.gallery || [vehicle.image];
 
-      const modal = document.getElementById("vehicleModal");
+  window.vehicleGallery = gallery;
+  window.vehicleGalleryIndex = 0;
 
-      const content = document.getElementById("vehicleModalContent");
+  content.innerHTML = `
+    <div class="fade-in">
 
-      content.innerHTML = `
+      <div class="relative h-[300px] sm:h-[450px] rounded-2xl overflow-hidden bg-black">
 
-        <div class="fade-in">
+        <img
+          id="vehicleMainImage"
+          src="${gallery[0]}"
+          alt="${vehicle.name}"
+          class="w-full h-full object-contain"
+        />
 
-          <div class="h-[300px] sm:h-[450px] rounded-2xl overflow-hidden bg-black">
+        <button onclick="changeVehicleImage(-1)"
+          class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/70 border border-white/20 rounded-full w-12 h-12 text-3xl">
+          ‹
+        </button>
 
-            <img
-              src="${vehicle.image}"
-              alt="${vehicle.name}"
-              class="w-full h-full object-cover"
-            />
+        <button onclick="changeVehicleImage(1)"
+          class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/70 border border-white/20 rounded-full w-12 h-12 text-3xl">
+          ›
+        </button>
 
-          </div>
+      </div>
 
-          <div class="mt-8">
+      <div class="flex gap-3 mt-4 overflow-x-auto pb-3">
 
-            <p class="text-red-500 uppercase tracking-[0.25em] text-sm">
-              ${vehicle.category}
-            </p>
-
-            <h2 class="text-5xl sm:text-6xl font-bold mt-2">
-              ${vehicle.name}
-            </h2>
-
-            <p class="text-red-500 text-xl font-semibold mt-4">
-              ${vehicle.price}
-            </p>
-
-            <p class="text-gray-300 text-lg leading-relaxed mt-7">
-              ${vehicle.description}
-            </p>
-
-          </div>
-
-
-          <div class="grid sm:grid-cols-2 gap-4 mt-8">
-
-            <div class="bg-black border border-white/10 rounded-2xl p-6">
-
-              <p class="text-gray-500 text-sm">
-                RANGE
-              </p>
-
-              <p class="text-xl font-bold mt-2">
-                ${vehicle.range}
-              </p>
-
-            </div>
-
-
-            <div class="bg-black border border-white/10 rounded-2xl p-6">
-
-              <p class="text-gray-500 text-sm">
-                PERFORMANCE
-              </p>
-
-              <p class="text-xl font-bold mt-2">
-                ${vehicle.acceleration}
-              </p>
-
-            </div>
-
-          </div>
-
-
-          <div class="mt-10 p-6 bg-[#111] border border-white/10 rounded-2xl">
-
-            <h3 class="text-2xl font-bold">
-              Vehicle information
-            </h3>
-
-            <p class="text-gray-400 mt-3 leading-relaxed">
-              Detailed specifications, multiple exterior views, interior
-              photography, dashboard images, feature information and additional
-              model-specific content will be added to this vehicle page during
-              the next TeslaVolt build stage.
-            </p>
-
-          </div>
-
-
-          <button
-            onclick="investIn('${vehicle.name}')"
-            class="mt-8 w-full bg-red-600 hover:bg-red-700 py-4 rounded-full font-bold text-lg transition"
-          >
-            INVEST IN ${vehicle.name.toUpperCase()}
+        ${gallery.map((image, i) => `
+          <button onclick="selectVehicleImage(${i})"
+            class="flex-shrink-0 w-20 h-16 rounded-xl overflow-hidden border border-white/20">
+            <img src="${image}" class="w-full h-full object-cover" />
           </button>
+        `).join("")}
 
+      </div>
+
+      <div class="mt-8">
+        <p class="text-red-500 uppercase tracking-widest text-sm">
+          ${vehicle.category}
+        </p>
+
+        <h2 class="text-5xl font-bold mt-2">
+          ${vehicle.name}
+        </h2>
+
+        <p class="text-red-500 text-xl font-semibold mt-4">
+          ${vehicle.price}
+        </p>
+
+        <p class="text-gray-300 text-lg leading-relaxed mt-7">
+          ${vehicle.description}
+        </p>
+      </div>
+
+      <div class="grid sm:grid-cols-2 gap-4 mt-8">
+
+        <div class="bg-black border border-white/10 rounded-2xl p-6">
+          <p class="text-gray-500 text-sm">RANGE</p>
+          <p class="text-xl font-bold mt-2">${vehicle.range}</p>
         </div>
-      `;
 
-      modal.classList.add("active");
+        <div class="bg-black border border-white/10 rounded-2xl p-6">
+          <p class="text-gray-500 text-sm">PERFORMANCE</p>
+          <p class="text-xl font-bold mt-2">${vehicle.acceleration}</p>
+        </div>
 
-      document.body.style.overflow = "hidden";
+      </div>
 
-      lucide.createIcons();
+      <div class="mt-10 p-6 bg-[#111] border border-white/10 rounded-2xl">
+        <h3 class="text-2xl font-bold">Vehicle information</h3>
+        <p class="text-gray-400 mt-3 leading-relaxed">
+          Explore the exterior, interior, dashboard and features of the ${vehicle.name}.
+        </p>
+      </div>
 
+      <button onclick="investIn('${vehicle.name}')"
+        class="mt-8 w-full bg-red-600 hover:bg-red-700 py-4 rounded-full font-bold text-lg">
+        INVEST IN ${vehicle.name.toUpperCase()}
+      </button>
+
+    </div>
+  `;
+
+  modal.classList.add("active");
+  document.body.style.overflow = "hidden";
+  lucide.createIcons();
 }
-    function openVehicle(index) {
-
-      const vehicle = vehicles[index];
-
-      const modal = document.getElementById("vehicleModal");
-
-      const content = document.getElementById("vehicleModalContent");
-
-      content.innerHTML = `
-
-        <div class="fade-in">
-
-          <div class="h-[300px] sm:h-[450px] rounded-2xl overflow-hidden bg-black">
-
-            <img
-              src="${vehicle.image}"
-              alt="${vehicle.name}"
-              class="w-full h-full object-cover"
-            />
-
-          </div>
-
-          <div class="mt-8">
-
-            <p class="text-red-500 uppercase tracking-[0.25em] text-sm">
-              ${vehicle.category}
-            </p>
-
-            <h2 class="text-5xl sm:text-6xl font-bold mt-2">
-              ${vehicle.name}
-            </h2>
-
-            <p class="text-red-500 text-xl font-semibold mt-4">
-              ${vehicle.price}
-            </p>
-
-            <p class="text-gray-300 text-lg leading-relaxed mt-7">
-              ${vehicle.description}
-            </p>
-
-          </div>
 
 
-          <div class="grid sm:grid-cols-2 gap-4 mt-8">
+function selectVehicleImage(index) {
+  if (!window.vehicleGallery) return;
 
-            <div class="bg-black border border-white/10 rounded-2xl p-6">
+  window.vehicleGalleryIndex = index;
 
-              <p class="text-gray-500 text-sm">
-                RANGE
-              </p>
-
-              <p class="text-xl font-bold mt-2">
-                ${vehicle.range}
-              </p>
-
-            </div>
+  document.getElementById("vehicleMainImage").src =
+    window.vehicleGallery[index];
+}
 
 
-            <div class="bg-black border border-white/10 rounded-2xl p-6">
+function changeVehicleImage(direction) {
+  if (!window.vehicleGallery) return;
 
-              <p class="text-gray-500 text-sm">
-                PERFORMANCE
-              </p>
+  let index = window.vehicleGalleryIndex + direction;
 
-              <p class="text-xl font-bold mt-2">
-                ${vehicle.acceleration}
-              </p>
+  if (index < 0) index = window.vehicleGallery.length - 1;
+  if (index >= window.vehicleGallery.length) index = 0;
 
-            </div>
-
-          </div>
+  selectVehicleImage(index);
+                                      }
 
 
-          <div class="mt-10 p-6 bg-[#111] border border-white/10 rounded-2xl">
-
-            <h3 class="text-2xl font-bold">
-              Vehicle information
-            </h3>
-
-            <p class="text-gray-400 mt-3 leading-relaxed">
-              Detailed specifications, multiple exterior views, interior
-              photography, dashboard images, feature information and additional
-              model-specific content will be added to this vehicle page during
-              the next TeslaVolt build stage.
-            </p>
-
-          </div>
-
-
-          <button
-            onclick="investIn('${vehicle.name}')"
-            class="mt-8 w-full bg-red-600 hover:bg-red-700 py-4 rounded-full font-bold text-lg transition"
-          >
-            INVEST IN ${vehicle.name.toUpperCase()}
-          </button>
-
-        </div>
-      `;
-
-      modal.classList.add("active");
-
-      document.body.style.overflow = "hidden";
-
-      lucide.createIcons();
-
-    }
 
 
     function closeVehicleModal() {
