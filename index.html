@@ -1036,77 +1036,129 @@
 
     const vehicles = [
 
-      {
-        name: "Model S",
-        category: "Luxury Electric Sedan",
-        price: "Reference pricing — contact support",
-        description:
-          "A premium electric sedan focused on long-range driving, performance, advanced software and a refined interior.",
-        range: "Long-range electric sedan",
-        acceleration: "High-performance variants available",
-        image:
-          "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90"
-      },
+    {
+  name: "Model S",
+  category: "Luxury Electric Sedan",
+  price: "From $84,990*",
+  description:
+    "Tesla Model S is a premium all-electric sedan combining long-range capability, powerful performance, advanced technology and a refined interior.",
+  range: "Up to 410 mi EPA est. depending on configuration",
+  acceleration: "As quick as 1.99 sec 0–60 mph depending on configuration",
+  image:
+    "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90",
+  gallery: [
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla%20Model%20S%20in%20snow%20(front%20view).jpg?width=1400",
+
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla%20Model%20S%20in%20snow%20(rear%20view).jpg?width=1400",
+
+  "https://commons.wikimedia.org/wiki/Special:FilePath/2016%20Tesla%20Model%20S%2075%20Front.jpg?width=1400",
+
+  "https://commons.wikimedia.org/wiki/Special:FilePath/2016%20Tesla%20Model%20S%2075%20Rear.jpg?width=1400",
+
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla%20Model%20S%20P100D%20%2832655580384%29.jpg?width=1400",
+
+  "https://commons.wikimedia.org/wiki/Special:FilePath/Tesla%20Model%20S%20Interior.jpg?width=1400"
+]
+},
+
+   {
+  name: "Model 3",
+  category: "Electric Sport Sedan",
+  price: "From $42,490*",
+  description:
+    "Tesla Model 3 is an efficient electric sedan designed for everyday driving, combining strong performance, impressive range, advanced technology and a minimalist interior.",
+  range: "Up to 363 mi EPA est. depending on configuration",
+  acceleration: "As quick as 3.1 sec 0–60 mph depending on configuration",
+  image:
+    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90",
+  gallery: [
+    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90"
+  ]
+},
+
+    {
+  name: "Model X",
+  category: "Premium Electric SUV",
+  price: "From $99,990*",
+  description:
+    "Tesla Model X is a premium all-electric SUV offering spacious seating, versatile cargo capacity, impressive performance and advanced Tesla technology.",
+  range: "Up to 352 mi EPA est. depending on configuration",
+  acceleration: "As quick as 2.5 sec 0–60 mph depending on configuration",
+  image:
+    "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90",
+  gallery: [
+    "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90"
+  ]
+},
 
       {
-        name: "Model 3",
-        category: "Electric Sport Sedan",
-        price: "Reference pricing — contact support",
-        description:
-          "A compact electric sedan combining efficiency, technology, performance and everyday practicality.",
-        range: "Long-range configurations available",
-        acceleration: "Performance configuration available",
-        image:
-          "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90"
-      },
+  name: "Model Y",
+  category: "Electric Midsize SUV",
+  price: "From $39,990*",
+  description:
+    "Tesla Model Y is a versatile electric SUV combining practicality, efficiency, generous cargo space, strong performance and advanced Tesla technology.",
+  range: "Up to 357 mi EPA est. depending on configuration",
+  acceleration: "As quick as 3.5 sec 0–60 mph depending on configuration",
+  image:
+    "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90",
+  gallery: [
+    "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90"
+  ]
+},
+     {
+  name: "Cybertruck",
+  category: "Electric Utility Truck",
+  price: "From $69,990*",
+  description:
+    "Tesla Cybertruck is an all-electric pickup with an angular stainless-steel exterior, impressive towing capability, durable construction and advanced Tesla technology.",
+  range: "Up to 325 mi EPA est. depending on configuration",
+  acceleration: "As quick as 2.6 sec 0–60 mph depending on configuration",
+  image:
+    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90",
+  gallery: [
+    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90"
+  ]
+},
 
       {
-        name: "Model X",
-        category: "Electric SUV",
-        price: "Reference pricing — contact support",
-        description:
-          "A premium electric SUV designed around spacious seating, practical cargo capacity and advanced electric performance.",
-        range: "Long-range electric SUV",
-        acceleration: "Performance-oriented configurations",
-        image:
-          "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90"
-      },
-
-      {
-        name: "Model Y",
-        category: "Electric Midsize SUV",
-        price: "From $39,990*",
-        description:
-          "A versatile electric SUV combining practicality, efficiency, cargo space and Tesla technology.",
-        range: "Up to 321 mi EPA est. depending on configuration",
-        acceleration: "As quick as 3.3 sec 0–60 mph depending on configuration",
-        image:
-          "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90"
-      },
-
-      {
-        name: "Cybertruck",
-        category: "Electric Utility Truck",
-        price: "From $74,990*",
-        description:
-          "Tesla's electric utility truck with a distinctive stainless-steel exterior, substantial towing capability and Powershare functionality.",
-        range: "Up to 325 mi EPA est. depending on configuration",
-        acceleration: "As quick as 2.6 sec 0–60 mph",
-        image:
-          "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90"
-      },
-
-      {
-        name: "Roadster",
-        category: "Electric Sports Car",
-        price: "Reservation / availability subject to Tesla",
-        description:
-          "Tesla's announced next-generation sports car, designed around extreme electric performance and a dramatic roadster profile.",
-        range: "Specifications and availability subject to change",
-        acceleration: "Announced performance specifications subject to change",
-        image:
-          "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90"
-      }
+  name: "Roadster",
+  category: "Electric Sports Car",
+  price: "Reservation / availability subject to Tesla",
+  description:
+    "Tesla Roadster is a next-generation electric sports car designed for exceptional acceleration, high performance and a dramatic two-seat roadster experience.",
+  range: "Specifications subject to final production configuration",
+  acceleration: "Announced performance specifications subject to change",
+  image:
+    "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90",
+  gallery: [
+    "https://images.unsplash.com/photo-1542282088-fe8426682b8f?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617704548623-340376564e68?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1560958089-b8a1929cea89?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1619767886558-efdc259cde1a?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1617788138017-80ad40651399?auto=format&fit=crop&w=1400&q=90",
+    "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?auto=format&fit=crop&w=1400&q=90"
+  ]
+},
 
     ];
 
