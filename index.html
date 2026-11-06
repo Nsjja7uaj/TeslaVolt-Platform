@@ -1183,7 +1183,112 @@
     /* ========================================================= */
     /* VEHICLE MODAL */
     /* ========================================================= */
+function openVehicle(index) {
 
+      const vehicle = vehicles[index];
+
+      const modal = document.getElementById("vehicleModal");
+
+      const content = document.getElementById("vehicleModalContent");
+
+      content.innerHTML = `
+
+        <div class="fade-in">
+
+          <div class="h-[300px] sm:h-[450px] rounded-2xl overflow-hidden bg-black">
+
+            <img
+              src="${vehicle.image}"
+              alt="${vehicle.name}"
+              class="w-full h-full object-cover"
+            />
+
+          </div>
+
+          <div class="mt-8">
+
+            <p class="text-red-500 uppercase tracking-[0.25em] text-sm">
+              ${vehicle.category}
+            </p>
+
+            <h2 class="text-5xl sm:text-6xl font-bold mt-2">
+              ${vehicle.name}
+            </h2>
+
+            <p class="text-red-500 text-xl font-semibold mt-4">
+              ${vehicle.price}
+            </p>
+
+            <p class="text-gray-300 text-lg leading-relaxed mt-7">
+              ${vehicle.description}
+            </p>
+
+          </div>
+
+
+          <div class="grid sm:grid-cols-2 gap-4 mt-8">
+
+            <div class="bg-black border border-white/10 rounded-2xl p-6">
+
+              <p class="text-gray-500 text-sm">
+                RANGE
+              </p>
+
+              <p class="text-xl font-bold mt-2">
+                ${vehicle.range}
+              </p>
+
+            </div>
+
+
+            <div class="bg-black border border-white/10 rounded-2xl p-6">
+
+              <p class="text-gray-500 text-sm">
+                PERFORMANCE
+              </p>
+
+              <p class="text-xl font-bold mt-2">
+                ${vehicle.acceleration}
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="mt-10 p-6 bg-[#111] border border-white/10 rounded-2xl">
+
+            <h3 class="text-2xl font-bold">
+              Vehicle information
+            </h3>
+
+            <p class="text-gray-400 mt-3 leading-relaxed">
+              Detailed specifications, multiple exterior views, interior
+              photography, dashboard images, feature information and additional
+              model-specific content will be added to this vehicle page during
+              the next TeslaVolt build stage.
+            </p>
+
+          </div>
+
+
+          <button
+            onclick="investIn('${vehicle.name}')"
+            class="mt-8 w-full bg-red-600 hover:bg-red-700 py-4 rounded-full font-bold text-lg transition"
+          >
+            INVEST IN ${vehicle.name.toUpperCase()}
+          </button>
+
+        </div>
+      `;
+
+      modal.classList.add("active");
+
+      document.body.style.overflow = "hidden";
+
+      lucide.createIcons();
+
+}
     function openVehicle(index) {
 
       const vehicle = vehicles[index];
