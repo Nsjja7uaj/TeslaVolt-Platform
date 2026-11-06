@@ -1364,10 +1364,30 @@ function changeVehicleImage(direction) {
     /* ========================================================= */
     /* CHAPORT SUPPORT */
     /* ========================================================= */
+function orderEnergy(productName) {
+  openSupport("I'm interested in ordering " + productName + ".");
+}
 
-    function openSupport(message) {
+function openSupport(message) {
+  if (
+    message.includes("Tesla Solar Panels") ||
+    message.includes("Tesla Powerwall") ||
+    message.includes("Tesla Solar Roof") ||
+    message.includes("Tesla charging products")
+  ) {
+    const location = prompt(
+      "Please enter your city and country so our team can assist with your order:"
+    );
 
-      /*
+    if (!location || !location.trim()) {
+      alert("Please enter your location to continue.");
+      return;
+    }
+
+    message += " My location is " + location.trim() + ".";
+  }
+
+  /*
         Chaport's normal widget opens automatically once loaded.
 
         We save the requested message so that the support integration can
